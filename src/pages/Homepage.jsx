@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import MainFooter from "../components/HomepageFooter";
+import { NavLink } from "react-router-dom";
 
 // Motion variants
 const variants = {
@@ -69,9 +70,13 @@ const Homepage = () => {
             ))}
           </div>
           <div className="flex justify-center pt-10">
-            <button className="p-1 border-1 rounded-lg border-sky-600 text-white bg-sky-600 hover:translate-y-0.5">
-              Apply Now
-            </button>
+            <NavLink
+              to={`/pages/jobs`}
+            >
+              <button className="p-1 border-1 rounded-lg border-sky-600 text-white bg-sky-600 hover:translate-y-0.5">
+                Checkout
+              </button>
+            </NavLink>
           </div>
         </div>
         {/* Right Side */}
