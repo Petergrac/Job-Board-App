@@ -1,0 +1,49 @@
+# This is A Job Board Search 
+
+# This is the folder structure
+src/
+  API/
+    jobs.js
+  components/
+    GeneralJobs.jsx
+    HomepageFooter.jsx
+    LoadingSpinner.jsx
+    ErrorComponents.jsx
+    LocationpageFooter.jsx
+  context/
+    jobsContext.jsx
+  layout/
+    Main.jsx
+  pages/
+    Aboutpage.jsx
+    Applypage.jsx
+    CategoriesPage.jsx
+    Contactspage.jsx
+    Homepage.jsx
+    Jobspage.jsx
+    LocationPage.jsx
+    PageNotFound.jsx
+  routing/
+    route.jsx
+  App.jsx
+  main.jsx
+public/
+  icons/
+    amazon.svg
+    youtube.svg
+    google.svg
+    safaricom.svg
+    instagram.svg
+    safaricom.png
+  images/
+    smily woman.avif
+    work.jpg
+    application.webp
+    video-poster.jpg
+    ...
+  videos/
+    video.mp4
+index.html
+package.json
+vite.config.js
+README.md
