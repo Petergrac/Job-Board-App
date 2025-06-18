@@ -6,7 +6,6 @@ import { NavLink } from "react-router-dom";
 
 const JobApplicationForm = () => {
   const { job } = useMyJobs();
-  console.log(job);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",

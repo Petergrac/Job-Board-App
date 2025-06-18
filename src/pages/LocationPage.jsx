@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import generalJobs from "../API/jobs";
 import { useQuery } from "@tanstack/react-query";
 import GeneralJobs from "../components/GeneralJobs";
 import LocationPageFooter from "../components/LocationpageFooter";
 import LoadingSpinner from "../components/LoadingSpinner";
 import ErrorComponent from "../components/ErrorComponents";
+import useDebounce from "../hooks/useDebounce";
 
 const LocationPage = () => {
   const {
@@ -15,35 +16,40 @@ const LocationPage = () => {
     queryKey: ["jobsData"],
     queryFn: () => generalJobs(),
   });
+
   const [countryName, setCountryName] = useState("");
-  const [countryJobs, setCountryJobs] = useState(data);
+  const [countryJobs, setCountryJobs] = useState([]);
 
-  console.log(data);
-  // Showing loading page
-  if (loading) {
-    return <LoadingSpinner/>
-  }
-  // Handling errors incase data does not load
-  if (error) {
-    return (
-      <ErrorComponent
-        message={`Failed to load job listings. ${error.message || 'Please check your connection.'}`}
-      />
-    )
-  }
+  // A shorter debounce delay
+  const debouncedCountry = useDebounce(countryName, 500);
 
-  // Function to handle the input
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  // Update countryJobs when data or debouncedCountry changes
+  useEffect(() => {
+    if (!data) return; // Wait for data to load
 
-    // Filter The Jobs based on the country
+    if (!debouncedCountry) {
+      setCountryJobs(data);
+      return;
+    }
     const selectedCountry = data.filter(
-      (data) => countryName.toLowerCase() === data[0].jobGeo.toLowerCase().split(',').slice(0)
+      (job) => debouncedCountry.toLowerCase() === job.jobGeo.toLowerCase()
     );
     setCountryJobs(selectedCountry);
-    setCountryName("");
-    console.log(selectedCountry);
+  }, [debouncedCountry, data]);
+
+  // Function to handle submit
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setCountryName(""); // clear input after submit
   };
+
+  if (loading) return <LoadingSpinner />;
+  if (error)
+    return (
+      <ErrorComponent
+        message={`Failed to load job listings. ${error.message || "Please check your connection."}`}
+      />
+    );
 
   return (
     <div className="flex flex-col">
@@ -72,18 +78,18 @@ const LocationPage = () => {
       </header>
       <div className="min-h-[65vh] bg-slate-700 py-5 ">
         <main className="flex flex-wrap md:gap-5 justify-center">
-          {countryJobs
-            ? (
-              countryJobs.length === 0
-              ? <div className="text-2xl font-bold text-white py-10"> Sorry no available job. Try another Country.</div>
-               : countryJobs.map((jobs) => (
-                <GeneralJobs key={jobs.id} job={jobs} />
-              )))
-            : data.map((job) => <GeneralJobs key={job.id} job={job} />)}
+          {countryJobs.length === 0 ? (
+            <div className="text-2xl font-bold text-white py-10">
+              Sorry no available job. Try another Country.
+            </div>
+          ) : (
+            countryJobs.map((jobs) => <GeneralJobs key={jobs.id} job={jobs} />)
+          )}
         </main>
       </div>
       <LocationPageFooter />
     </div>
   );
 };
+
 export default LocationPage;

@@ -11,7 +11,6 @@ export function useMyJobs() {
 // Function that will provide children with props
 export function JobsProvider({ children }) {
   const [job, setJob] = useState(null);
-    console.log(job);
   // Add job to the job list
   const addJob = (job) => {
     // Update the joblist

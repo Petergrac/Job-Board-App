@@ -21,10 +21,6 @@ const Contacts = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // In a real application, you would send this data to a backend API
-    console.log('Contact form submitted:', formData);
-
     toast.success('Thank you for your message! We will get back to you soon.');
     // Reset form after submission
     setFormData({
@@ -222,7 +218,7 @@ const Contacts = () => {
               Browse Jobs
             </NavLink>
             <NavLink
-              to="/pages/homepage"
+              to="/"
               className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105"
               aria-label="Go to homepage"
             >

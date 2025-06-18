@@ -22,7 +22,7 @@ const Mainpage = () => {
           <h1 className="md:pr-25 text-2xl hidden md:block">
             Job<span className="text-blue-400 font-bold">Seeker</span>
           </h1>
-          <NavLink to={`pages/homepage`} className="lin">Home</NavLink>
+          <NavLink to={`/`} className="lin">Home</NavLink>
           <NavLink to={`pages/jobs`} className="lin">Jobs</NavLink>
           <NavLink to={`pages/categories/`} className="lin">Categories</NavLink>
           <NavLink to={`pages/locations/`} className="lin">Locations</NavLink>

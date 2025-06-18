@@ -28,7 +28,7 @@ const routes = [
     ),
     children: [
       {
-        path: "pages/homepage",
+        index: true,
         element: (
           <Suspense
             fallback={

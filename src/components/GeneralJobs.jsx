@@ -5,7 +5,7 @@ const GeneralJobs = ({ job }) => {
   const number = Math.floor((Math.random() + 1) * 150000);
   const salary = Intl.NumberFormat("en-US").format(number);
   const [show, setShow] = useState(false);
-  const {addJob} = useMyJobs();
+  const { addJob } = useMyJobs();
   const jobId = job.id;
 
   const handleDetails = () => setShow((prev) => !prev);
@@ -37,17 +37,17 @@ const GeneralJobs = ({ job }) => {
         <span className="text-[#c7df67] font-bold">${salary}</span> per year.
       </p>
       <div className="flex justify-around">
-         <NavLink
-          onClick={()=>addJob(job)}
+        <NavLink
+          onClick={() => addJob(job)}
           to={`/pages/apply/${jobId}`} /* <--- THIS IS THE KEY CHANGE */
-          className="bg-green-600 hover:bg-green-700 px-2 py-1 rounded-sm font-bold active:translate-y-0.5 flex items-center justify-center"
+          className="bg-blue-800 hover:bg-blue-600 px-2 py-1 rounded-sm font-bold active:translate-y-0.5 flex items-center justify-center"
           aria-label={`Apply for ${job.jobTitle}`}
         >
           Apply
         </NavLink>
         <button
           onClick={handleDetails}
-          className="bg-blue-800 px-2 py-1 mt-1 rounded-sm font-bold active:translate-y-0.5"
+          className="bg-blue-800 hover:bg-blue-600 px-2 py-1 mt-1 rounded-sm font-bold active:translate-y-0.5"
         >
           {show ? "Hide" : "Show"} Details
         </button>

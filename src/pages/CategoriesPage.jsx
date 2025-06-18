@@ -34,7 +34,6 @@ const Categories = () => {
   const handleClick = (jobtype) => {
     const filteredData = data.filter((data) => data.jobType[0] == `${jobtype}`);
     setFilter(filteredData);
-    console.log(filter);
   };
   return (
     <div>

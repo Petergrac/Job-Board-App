@@ -140,7 +140,7 @@ const AboutUs = () => {
               Contact Us
             </NavLink>
             <NavLink
-              to="/pages/homepage"
+              to="/"
               className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105"
               aria-label="Go to the homepage"
             >
